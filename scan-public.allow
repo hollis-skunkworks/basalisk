@@ -1,1 +1,2 @@
 # Reviewed allowances for scripts/scan-public (RULE-ID PATH-GLOB REASON). Allowed findings are still printed.
+agent-box-host (commit-message)@838aa8496c25 My commit message for the SURFACE_OUT fix named the fleet host where the page-less build was seen (2026-11-28). Scoped to that one commit; no host names in the tree.
