@@ -1,0 +1,207 @@
+/*
+ * The Surface theme: every colour, radius and font an app's components may name.
+ *
+ * Import it once, after Tailwind:
+ *
+ *   @import "tailwindcss";
+ *   @import "<this file>";
+ *
+ * Colour comes from a palette: the handful of colours a Linux theme names (background, foreground,
+ * accent, selection and the terminal's red, green, yellow, blue, magenta, cyan), as --p-* properties.
+ * Every token a component uses (stock shadcn's --background, --primary, --border, ... and ours,
+ * --success, --warning, --info, --desk) is derived from them here, in the browser. So a theme is
+ * thirteen colours: set them (or call applyPalette from @hollis-labs/surface-theme, which also reads
+ * Omarchy colors.toml, base16 and pywal files) and the whole app follows. Blade Runner is the default.
+ *
+ * The feel is a few more properties: --radius, --type-ui (bars, buttons, labels, tabs: the chrome),
+ * --type-body, --type-mono, --glow (the focus glow) and --window-gap. data-type="mono" on <html>
+ * sets everything in the mono font.
+ *
+ * An app's look is these values: override them under :root in the app's own stylesheet; never
+ * restyle a component in a view.
+ */
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    --font-heading: var(--type-ui);
+    --font-sans: var(--type-body);
+    --font-mono: var(--type-mono);
+    --color-desk: var(--desk);
+    --color-sidebar-ring: var(--sidebar-ring);
+    --color-success: var(--success);
+    --color-warning: var(--warning);
+    --color-info: var(--info);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar: var(--sidebar);
+    --color-chart-5: var(--chart-5);
+    --color-chart-4: var(--chart-4);
+    --color-chart-3: var(--chart-3);
+    --color-chart-2: var(--chart-2);
+    --color-chart-1: var(--chart-1);
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+    --radius-sm: 4px;
+    --radius-md: 5px;
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.25);
+    --radius-2xl: calc(var(--radius) * 1.5);
+    --radius-3xl: calc(var(--radius) * 1.75);
+    --radius-4xl: calc(var(--radius) * 2);
+}
+
+/* The palette: Surface Default (Blade Runner evolved). Replace these thirteen to retheme. */
+:root {
+    --p-bg: #0c1215;
+    --p-fg: #d4e0e0;
+    --p-muted: #6e8287;
+    --p-accent: #e5a463;
+    --p-accent-2: #7ecfd4;
+    --p-selection: #22323b;
+    --p-red: #e56358;
+    --p-green: #6bcf8e;
+    --p-yellow: #e0b04b;
+    --p-blue: #6eb2d4;
+    --p-magenta: #c984b2;
+    --p-cyan: #7ecfd4;
+    --p-orange: color-mix(in oklab, var(--p-red), var(--p-yellow));
+}
+
+/* The feel. */
+:root {
+    --radius: 0.375rem;
+    --type-mono: "CaskaydiaMono Nerd Font", "JetBrainsMono Nerd Font", "JetBrains Mono", "Cascadia Code", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --type-body: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --type-ui: var(--type-mono);
+    --glow: 0 0 0 1px color-mix(in oklab, var(--p-accent) 70%, transparent), 0 0 14px -2px color-mix(in oklab, var(--p-accent) 45%, transparent);
+    --window-gap: 6px;
+}
+[data-type="mono"] {
+    --type-body: var(--type-mono);
+}
+
+/* Every token, from the palette. Surfaces step from the background toward the foreground; lines are
+   the foreground, faint; the accent is primary and ring; the terminal's colours are the states.
+   Derived on any element that carries a palette too (data-palette), so one page can show several. */
+:root,
+[data-palette] {
+    color-scheme: dark;
+    --background: var(--p-bg);
+    --foreground: var(--p-fg);
+    --desk: color-mix(in oklab, var(--p-bg), black 42%);
+    --card: color-mix(in oklab, var(--p-bg), var(--p-fg) 5.5%);
+    --card-foreground: var(--p-fg);
+    --popover: color-mix(in oklab, var(--p-bg), var(--p-fg) 8%);
+    --popover-foreground: var(--p-fg);
+    --primary: var(--p-accent);
+    --primary-foreground: var(--p-bg);
+    --secondary: color-mix(in oklab, var(--p-bg), var(--p-fg) 11.5%);
+    --secondary-foreground: var(--p-fg);
+    --muted: color-mix(in oklab, var(--p-bg), var(--p-fg) 7.5%);
+    --muted-foreground: color-mix(in oklab, var(--p-fg) 70%, var(--p-bg));
+    --accent: color-mix(in oklab, var(--p-bg), var(--p-accent) 15%);
+    --accent-foreground: var(--p-fg);
+    --destructive: var(--p-red);
+    --border: color-mix(in oklab, var(--p-fg) 14%, transparent);
+    --input: color-mix(in oklab, var(--p-fg) 16%, transparent);
+    --ring: var(--p-accent);
+    --chart-1: var(--p-accent);
+    --chart-2: var(--p-cyan);
+    --chart-3: var(--p-magenta);
+    --chart-4: var(--p-green);
+    --chart-5: var(--p-yellow);
+    --sidebar: var(--card);
+    --sidebar-foreground: var(--p-fg);
+    --sidebar-primary: var(--p-accent);
+    --sidebar-primary-foreground: var(--p-bg);
+    --sidebar-accent: var(--accent);
+    --sidebar-accent-foreground: var(--p-fg);
+    --sidebar-border: var(--border);
+    --sidebar-ring: var(--p-accent);
+    --success: var(--p-green);
+    --warning: var(--p-yellow);
+    --info: var(--p-blue);
+    --selection: var(--p-selection, color-mix(in oklab, var(--p-bg), var(--p-accent) 25%));
+}
+:root:not(.dark) {
+    color-scheme: light;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  /* No scrollbars, vertical or horizontal, anywhere: everything still scrolls (wheel, trackpad,
+     keys, touch), the bars are just not drawn. The browser's own bars and ScrollArea's. */
+  * {
+    scrollbar-width: none;
+  }
+  *::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+  [data-slot="scroll-area-scrollbar"] {
+    display: none;
+  }
+  body {
+    @apply bg-background font-sans text-foreground;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: var(--selection);
+    color: var(--p-fg);
+  }
+  /* The chrome is set in the UI font (mono by default): bars, buttons, tabs, badges, labels, titles. */
+  button,
+  label,
+  h1,
+  h2,
+  h3,
+  h4,
+  [data-slot="badge"],
+  [data-slot="tabs-trigger"],
+  [data-slot="card-title"],
+  [data-slot="dialog-title"],
+  [data-slot="app-frame-bar"],
+  [data-slot="kbd"] {
+    font-family: var(--type-ui);
+  }
+  /* The bar reads like Basalisk's status bar: the active window task is underlined in the accent,
+     and an active bar toggle (Agent panel, Attention chip) is tinted in the accent. */
+  [data-slot="app-frame-bar"] [data-task-active="true"] {
+    color: var(--foreground);
+    box-shadow: inset 0 -2px 0 var(--primary);
+  }
+  [data-slot="app-frame-bar"] [data-bar-on="true"] {
+    background: var(--accent);
+    color: var(--primary);
+  }
+  /* Focus: the accent ring with a soft glow, except on bare inputs whose wrapper draws the frame. */
+  :focus-visible:not([data-slot="command-input"]):not([data-slot="input-group-control"]) {
+    box-shadow: var(--glow);
+  }
+}

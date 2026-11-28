@@ -1,0 +1,20 @@
+name: build
+# Builds bin/basalisk (page embedded) on the build runner and publishes the workflow artifact
+# fleet-install deploys (deploy.yaml rides in the tarball). Push to main and manual runs only:
+# this repository is public, and pull requests must never run on the build runner.
+on:
+  push: { branches: [main] }
+  workflow_dispatch:
+permissions: { contents: read }
+jobs:
+  build:
+    uses: hollis-labs/substrate/.github/workflows/go-app-build.yml@75fb7cee446d865706c7c895fc6f7fe7e2306306
+    with:
+      app: basalisk
+      main_pkg: ./cmd/basalisk
+      node_version: "22"
+      ui_cmd: "npm ci && SURFACE_APP=basalisk SURFACE_OUT=cmd/basalisk/webui/dist npx vite build --config web/vite.config.ts"
+      test_cmd: "go vet ./..."   # the full checks run in ci.yml
+      targets: '["linux/amd64"]'
+      extra_files: deploy.yaml
+      ldflags_var: ""   # the version comes from the Go build info

@@ -1,0 +1,7 @@
+/bin/
+/node_modules/
+/cmd/*/webui/dist/*
+!/cmd/*/webui/dist/.gitkeep
+# Written by surfacePage() at build time; the path is this machine's.
+/web/src/generated/surface-modules.css
+.DS_Store

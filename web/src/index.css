@@ -1,0 +1,8 @@
+@import "tailwindcss";
+@import "./components/surface.css";
+/* Written by surfacePage() at build time: @source for Surface's modules on this machine. */
+@import "./generated/surface-modules.css";
+@source "../../node_modules/@hollis-labs/surface-page/dist";
+@source "../../modules";
+html, body, #root { height: 100%; margin: 0; }
+:root { color-scheme: light; }

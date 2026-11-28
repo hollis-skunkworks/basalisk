@@ -1,0 +1,33 @@
+# Basalisk v2: the testing ground for Surface modules in development (owner, 2026-11-28).
+# It composes Surface's modules (from hollis-labs/surface) with any of its own (modules/ here).
+# `make build` = `go tool surface build -f cmd/basalisk/surface.yaml`.
+app: basalisk
+title: Basalisk
+addr: 127.0.0.1:8190
+modules:
+  - notes
+  - files
+  - scratch
+  - drafts
+  - browser
+  - design
+  - terminal
+  - viewer
+  - diagram
+  - inbox
+  - reader
+  - assist
+  - projects
+  - tether
+  - work
+  - frag
+  - approvals
+  - registry
+  - ops
+  - align
+  - trackers
+  - usage
+  - chat
+  - builder
+  - workbench
+  - workflows

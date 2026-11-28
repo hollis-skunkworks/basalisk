@@ -1,0 +1,186 @@
+/*
+ * The window manager's look. flexlayout-react draws the frames, tabs and gaps with its own
+ * class names and reads its colours from --flexlayout-* variables; this file points those
+ * at the theme's tokens, so the desk follows the theme (and dark mode) like everything
+ * else. The few rules below the variables shape the frames into windows.
+ */
+:root {
+  --flexlayout-font-family: inherit;
+  --flexlayout-font-size: inherit;
+  --flexlayout-font-weight: inherit;
+  --flexlayout-color-text: var(--foreground);
+  --flexlayout-color-background: transparent;
+  --flexlayout-color-base: var(--background);
+  --flexlayout-color-1: var(--card);
+  --flexlayout-color-2: var(--muted);
+  --flexlayout-color-3: var(--muted);
+  --flexlayout-color-4: var(--border);
+  --flexlayout-color-5: var(--border);
+  --flexlayout-color-6: var(--border);
+  --flexlayout-color-focus: var(--ring);
+  --flexlayout-color-icon: var(--muted-foreground);
+  --flexlayout-color-overflow: var(--muted-foreground);
+  --flexlayout-color-tabset-background: var(--card);
+  --flexlayout-color-tabset-divider-line: var(--border);
+  --flexlayout-color-tab-content: var(--background);
+  --flexlayout-color-tab-selected: var(--foreground);
+  --flexlayout-color-tab-selected-background: var(--background);
+  --flexlayout-color-tab-unselected: var(--muted-foreground);
+  --flexlayout-color-tab-unselected-background: transparent;
+  --flexlayout-color-toolbar-button-hover: var(--muted);
+  --flexlayout-color-splitter: transparent;
+  --flexlayout-color-splitter-hover: color-mix(in oklab, var(--ring) 35%, transparent);
+  --flexlayout-color-splitter-drag: color-mix(in oklab, var(--ring) 60%, transparent);
+  --flexlayout-color-drag1: var(--ring);
+  --flexlayout-color-drag1-background: color-mix(in oklab, var(--ring) 14%, transparent);
+  --flexlayout-color-drag2: var(--ring);
+  --flexlayout-color-drag2-background: color-mix(in oklab, var(--ring) 14%, transparent);
+  --flexlayout-color-drag-rect: var(--foreground);
+  --flexlayout-color-drag-rect-background: var(--popover);
+  --flexlayout-color-drag-rect-border: var(--border);
+  --flexlayout-color-edge-marker: var(--ring);
+  --flexlayout-color-edge-icon: var(--background);
+  --flexlayout-color-popup-border: var(--border);
+  --flexlayout-color-popup-unselected: var(--popover-foreground);
+  --flexlayout-color-popup-unselected-background: var(--popover);
+  --flexlayout-color-popup-selected: var(--accent-foreground);
+  --flexlayout-color-popup-selected-background: var(--accent);
+  --flexlayout-color-float-window-header-background: var(--card);
+  --flexlayout-splitter-size: var(--window-gap, 8px);
+  --flexlayout-splitter-active-size: var(--window-gap, 8px);
+}
+
+/* The layout fills the component and leaves a gap's width around the windows. */
+[data-slot="window-manager"] > .flexlayout__layout {
+  inset: var(--window-gap, 8px);
+}
+
+/* A stack is a window: a frame with its tabs as the title bar. Hyprland's border: the same width
+   on every window, so nothing moves when the focus does; quiet on the others, and on the focused one
+   a gradient from the accent to the second accent, with a soft glow. The border is a background
+   drawn under the padding box, which is how a gradient follows rounded corners. */
+[data-slot="window-manager"] .flexlayout__tabset {
+  --window-border: 2px;
+  --window-fill: var(--flexlayout-color-tabset-background, var(--card));
+  border: var(--window-border) solid transparent;
+  border-radius: var(--radius-lg, 8px);
+  background:
+    linear-gradient(var(--window-fill), var(--window-fill)) padding-box,
+    linear-gradient(var(--border), var(--border)) border-box;
+}
+/* The stack with the focus: flexlayout marks its tab strip, the frame follows. */
+[data-slot="window-manager"] .flexlayout__tabset:has(> .flexlayout__tabset-selected),
+[data-slot="window-manager"] .flexlayout__tabset:has(.flexlayout__tabset_tabbar_outer.flexlayout__tabset-selected) {
+  background:
+    linear-gradient(var(--window-fill), var(--window-fill)) padding-box,
+    linear-gradient(135deg, var(--p-accent, var(--ring)), var(--p-accent-2, var(--ring))) border-box;
+  box-shadow: var(--glow, none);
+}
+[data-slot="window-manager"] .flexlayout__tabset_tabbar_outer:not(.flexlayout__tabset-selected) {
+  color: var(--muted-foreground);
+}
+[data-slot="window-manager"] .flexlayout__tabset_tabbar_outer {
+  min-height: 1.75rem;
+  height: 1.75rem;
+  font-size: 12px;
+  font-family: var(--type-ui, inherit);
+  border-bottom: 1px solid color-mix(in oklab, var(--border) 75%, transparent);
+}
+[data-slot="window-manager"] .flexlayout__tab_button,
+[data-slot="window-manager"] .flexlayout__tab_button_stretch {
+  gap: 0.375rem;
+  min-width: 0;
+  padding: 0 0.35rem 0 0.5rem;
+  height: 1.75rem;
+  border-radius: 0;
+}
+[data-slot="window-manager"] .flexlayout__tab_button_content {
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 500;
+}
+[data-slot="window-manager"] .flexlayout__tab_button_leading {
+  color: var(--p-accent-2, var(--muted-foreground));
+  display: inline-flex;
+  align-items: center;
+}
+[data-slot="window-manager"] .flexlayout__tabset-selected .flexlayout__tab_button_leading {
+  color: var(--primary);
+}
+[data-slot="window-manager"] .flexlayout__tab_button_leading svg {
+  width: 13px;
+  height: 13px;
+}
+[data-slot="window-manager"] .flexlayout__tab_toolbar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding-right: 4px;
+}
+[data-slot="window-manager"] .flexlayout__tab_toolbar_button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  color: var(--muted-foreground);
+  border-radius: var(--radius-sm, 4px);
+  cursor: pointer;
+}
+[data-slot="window-manager"] .flexlayout__tab_toolbar_button:hover {
+  color: var(--foreground);
+}
+[data-slot="window-manager"] .flexlayout__tab_toolbar_button svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* A floating group sits above the tiling with a shadow of its own. */
+[data-slot="window-manager"] .flexlayout__float_window {
+  border: 2px solid transparent;
+  border-radius: var(--radius-lg, 6px);
+  background:
+    linear-gradient(var(--card), var(--card)) padding-box,
+    linear-gradient(var(--border), var(--border)) border-box;
+  box-shadow: 0 12px 32px rgb(0 0 0 / 0.45);
+}
+[data-slot="window-manager"] .flexlayout__float_window_header {
+  height: 14px;
+  min-height: 14px;
+  padding: 0 6px;
+  background: color-mix(in oklab, var(--card), black 12%);
+  border-bottom: 1px solid color-mix(in oklab, var(--border) 50%, transparent);
+  cursor: grab;
+}
+[data-slot="window-manager"] .flexlayout__float_window_header:active {
+  cursor: grabbing;
+}
+[data-slot="window-manager"] .flexlayout__float_window:has(.flexlayout__tabset-selected) {
+  background:
+    linear-gradient(var(--card), var(--card)) padding-box,
+    linear-gradient(135deg, var(--p-accent, var(--ring)), var(--p-accent-2, var(--ring))) border-box;
+  box-shadow: var(--glow, none), 0 12px 32px rgb(0 0 0 / 0.35);
+}
+/* Inside a floating window the window itself is the frame. */
+[data-slot="window-manager"] .flexlayout__float_window .flexlayout__tabset,
+[data-slot="window-manager"] .flexlayout__float_window .flexlayout__tabset:has(.flexlayout__tabset-selected) {
+  border: 0;
+  border-radius: 0;
+  background: var(--window-fill);
+  box-shadow: none;
+}
+
+/* With nothing tiled, the tiling is bare canvas (or the caller's empty state), not a frame. */
+[data-slot="window-manager"][data-empty="true"] .flexlayout__tabset:not(.flexlayout__float_window .flexlayout__tabset) {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+}
+[data-slot="window-manager"][data-empty="true"]
+  .flexlayout__tabset:not(.flexlayout__float_window .flexlayout__tabset)
+  > .flexlayout__tabset_tabbar_outer {
+  display: none;
+}

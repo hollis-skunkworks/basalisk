@@ -1,0 +1,95 @@
+/*
+ * What utilities cannot say about rendered Markdown: the look of a link (here, in the base
+ * layer, so a caller's own `a` component keeps it and its utilities still win), the colours of
+ * highlighted code (highlight.js's class names, mapped to the theme's tokens so dark, light and
+ * every palette follow) and the task list's boxes.
+ */
+@layer base {
+  [data-slot="markdown"] a {
+    color: var(--primary);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in oklab, var(--primary) 45%, transparent);
+    text-underline-offset: 2px;
+  }
+  [data-slot="markdown"] a:hover {
+    text-decoration-color: var(--primary);
+  }
+}
+
+[data-slot="markdown"] .hljs-keyword,
+[data-slot="markdown"] .hljs-selector-tag,
+[data-slot="markdown"] .hljs-tag,
+[data-slot="markdown"] .hljs-deletion {
+  color: var(--chart-3);
+}
+[data-slot="markdown"] .hljs-string,
+[data-slot="markdown"] .hljs-regexp,
+[data-slot="markdown"] .hljs-addition,
+[data-slot="markdown"] .hljs-template-tag,
+[data-slot="markdown"] .hljs-template-variable {
+  color: var(--success);
+}
+[data-slot="markdown"] .hljs-number,
+[data-slot="markdown"] .hljs-literal,
+[data-slot="markdown"] .hljs-symbol,
+[data-slot="markdown"] .hljs-bullet {
+  color: var(--warning);
+}
+[data-slot="markdown"] .hljs-comment,
+[data-slot="markdown"] .hljs-quote,
+[data-slot="markdown"] .hljs-meta {
+  color: var(--muted-foreground);
+  font-style: italic;
+}
+[data-slot="markdown"] .hljs-title,
+[data-slot="markdown"] .hljs-section,
+[data-slot="markdown"] .hljs-name,
+[data-slot="markdown"] .hljs-selector-id,
+[data-slot="markdown"] .hljs-selector-class {
+  color: var(--info);
+}
+[data-slot="markdown"] .hljs-type,
+[data-slot="markdown"] .hljs-built_in,
+[data-slot="markdown"] .hljs-attr,
+[data-slot="markdown"] .hljs-attribute,
+[data-slot="markdown"] .hljs-variable,
+[data-slot="markdown"] .hljs-params,
+[data-slot="markdown"] .hljs-property {
+  color: var(--chart-2);
+}
+[data-slot="markdown"] .hljs-section,
+[data-slot="markdown"] .hljs-strong {
+  font-weight: 600;
+}
+[data-slot="markdown"] .hljs-emphasis {
+  font-style: italic;
+}
+
+/* Task lists: the box in the bullet's place, so a list that mixes tasks and items lines up. */
+[data-slot="markdown"] li.task-list-item {
+  list-style: none;
+}
+[data-slot="markdown"] li.task-list-item > input[type="checkbox"] {
+  margin: 0 0.4em 0.15em -1.35em;
+  vertical-align: middle;
+  accent-color: var(--primary);
+}
+[data-slot="markdown"] li.task-list-item:has(> input:checked) {
+  color: var(--muted-foreground);
+}
+
+/* Footnotes (GFM): small, under a rule. */
+[data-slot="markdown"] section.footnotes {
+  margin-top: 1.5em;
+  border-top: 1px solid var(--border);
+  padding-top: 0.5em;
+  font-size: 0.85em;
+  color: var(--muted-foreground);
+}
+[data-slot="markdown"] .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}

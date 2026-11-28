@@ -1,0 +1,28 @@
+name: ci
+on:
+  push: { branches: [main] }
+  pull_request: { branches: [main] }
+permissions: { contents: read }
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-go@v5
+        with: { go-version-file: go.mod }
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      - name: hygiene (secrets, hosts, private paths; tree and history), before anything is built
+        run: python3 scripts/scan-public --ref HEAD
+      - run: npm ci
+      - name: Generated wiring is current
+        run: |
+          make generate
+          git diff --exit-code -- cmd web/src/generated
+      - name: Typecheck the page
+        run: npx tsc --noEmit -p tsconfig.json
+      - name: Build (page, then binary)
+        run: make build
+      - run: go vet ./...
+      - run: go test -race ./...

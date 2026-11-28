@@ -1,0 +1,20 @@
+# fleet-install descriptor. Deploy with an explicit target:
+#   fleet-install deploy basalisk --run <build run id> --repo hollis-skunkworks/basalisk --target linux-basalisk [--dry-run]
+# No host names here: this repository is public (scripts/scan-public).
+schema: fleet-deploy/v1
+app: basalisk
+repo: hollis-skunkworks/basalisk
+artifact: {name: "basalisk-{sha12}", tarball: "basalisk_{version}_{os}_{arch}.tar.gz", sums: SHA256SUMS}
+targets:
+  # The Cerberus resource `basalisk` runs ~/.local/bin/basalisk with BASALISK_DATA_DIR set in its env file.
+  - id: linux-basalisk
+    when: {os: linux, arch: amd64}
+    binary: basalisk
+    install_root: ~/.local/share/fleet/releases/basalisk
+    symlinks:
+      - path: ~/.local/bin/basalisk
+    preflight:
+      - {kind: sqlite_backup, db: ~/.local/share/basalisk-desk/surface.db, dest: "{backup_dir}/basalisk.pre-{version}.db"}
+    restart:
+      - {via: cerberus, resource: basalisk, verb: reload, run: true}
+    health: {url: "http://127.0.0.1:8190/healthz", expect_status: [200], timeout: 60s}
