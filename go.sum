@@ -63,8 +63,8 @@ github.com/hashicorp/golang-lru/v2 v2.0.7 h1:a+bsQ5rvGLjzHuww6tVxozPZFVghXaHOwFs
 github.com/hashicorp/golang-lru/v2 v2.0.7/go.mod h1:QeFd9opnmA6QUJc5vARoKUSoFhyfM2/ZepoAG6RGpeM=
 github.com/hollis-labs/libs/agent/agentdir v0.6.0 h1:FXK8E9IVcQ85njmyfjNVERw6EzfoFo2VSVyLKE70GrE=
 github.com/hollis-labs/libs/agent/agentdir v0.6.0/go.mod h1:MCikgc+Fc49QRuVXXA/QbPNEKNCOV2a7JoEJAgcHbRs=
-github.com/hollis-labs/libs/agent/chat v0.1.0 h1:NHored2kzzCXwgaX96joqO4ZJejKyLm/4G5IEvRE8Rc=
-github.com/hollis-labs/libs/agent/chat v0.1.0/go.mod h1:rDzqOwUmC6Gu2wN5XjG59lcRcJPXKhbj/77U63w0Gr8=
+github.com/hollis-labs/libs/agent/chat v0.2.0 h1:yHxLnG3f4lCwlPVj9Qposac99Mu46eOg7tO1qc1k0YM=
+github.com/hollis-labs/libs/agent/chat v0.2.0/go.mod h1:rDzqOwUmC6Gu2wN5XjG59lcRcJPXKhbj/77U63w0Gr8=
 github.com/hollis-labs/libs/agent/core v0.5.0 h1:bk2GAHef+lH5ihYKBnQpir5SZoeRNTp7AyY8iYCLkr0=
 github.com/hollis-labs/libs/agent/core v0.5.0/go.mod h1:AHtYM1ZFiaAVnPQYaZjJrI8trpmwomFMPknACIUe+4Y=
 github.com/hollis-labs/libs/agent/desk v0.1.0 h1:FwwMKVy1yvgDwkeLoEsKWfqQRL5KJ2+1BnolFXwcQ1I=
@@ -103,8 +103,8 @@ github.com/hollis-labs/nanite v0.16.0 h1:npcyCN1Qqlo8R15MCCzC5y6/6Cx3u0G7x9fSoG6
 github.com/hollis-labs/nanite v0.16.0/go.mod h1:DLS9oKPArM6+T9baq9FdSlPU6Eu73dHlaxql5m6aOG4=
 github.com/hollis-labs/substrate v0.1.1-0.20261123012010-9ce0ebfd5a65 h1:yVmp/cWpk3O5+xQxSRv7vMRJ9tenR306ePIJJyp1Slc=
 github.com/hollis-labs/substrate v0.1.1-0.20261123012010-9ce0ebfd5a65/go.mod h1:ZRN31jPnAFuCaw9yAyRpXvYW800Zr4nTMX5HwQT2z0M=
-github.com/hollis-labs/surface v0.21.5 h1:x3YGkYtYNP/jQ5cuHLz+Oc5LDCdN9jfMePZdic9E1s0=
-github.com/hollis-labs/surface v0.21.5/go.mod h1:sO/yH8+d+UyIPkXosN7JQUWmUzqsSul4PDHHFKY7aLc=
+github.com/hollis-labs/surface v0.22.0 h1:VI3HmhRd2ALHjul6tm77WKa0QmTHkzyLfynKIz+OAFc=
+github.com/hollis-labs/surface v0.22.0/go.mod h1:+Gd5UU5JOaR2bWLJw1Y9cT9kE1rBrUHPUuJ4nkqqvoI=
 github.com/inconshreveable/mousetrap v1.1.0 h1:wN+x4NVGpMsO7ErUn/mUI3vEoE6Jt13X2s0bqwp9tc8=
 github.com/inconshreveable/mousetrap v1.1.0/go.mod h1:vpF70FUmC8bwa3OWnCshd2FqLfsEA9PFc4w1p2J65bw=
 github.com/invopop/jsonschema v0.14.0 h1:MHQqLhvpNUZfw+hM3AZDYK7jxO8FZoQeQM77g8iyZjg=

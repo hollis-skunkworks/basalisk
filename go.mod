@@ -9,7 +9,7 @@ tool (
 
 require (
 	github.com/hollis-labs/substrate v0.1.1-0.20261123012010-9ce0ebfd5a65
-	github.com/hollis-labs/surface v0.21.5
+	github.com/hollis-labs/surface v0.22.0
 )
 
 require (
@@ -36,7 +36,7 @@ require (
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.30.0 // indirect
 	github.com/hollis-labs/libs/agent/agentdir v0.6.0 // indirect
-	github.com/hollis-labs/libs/agent/chat v0.1.0 // indirect
+	github.com/hollis-labs/libs/agent/chat v0.2.0 // indirect
 	github.com/hollis-labs/libs/agent/core v0.5.0 // indirect
 	github.com/hollis-labs/libs/agent/desk v0.1.0 // indirect
 	github.com/hollis-labs/libs/agent/steer v0.1.0 // indirect
