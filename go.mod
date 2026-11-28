@@ -9,7 +9,7 @@ tool (
 
 require (
 	github.com/hollis-labs/substrate v0.1.1-0.20261123012010-9ce0ebfd5a65
-	github.com/hollis-labs/surface v0.22.1
+	github.com/hollis-labs/surface v0.23.0
 )
 
 require (
