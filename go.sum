@@ -103,8 +103,8 @@ github.com/hollis-labs/nanite v0.16.0 h1:npcyCN1Qqlo8R15MCCzC5y6/6Cx3u0G7x9fSoG6
 github.com/hollis-labs/nanite v0.16.0/go.mod h1:DLS9oKPArM6+T9baq9FdSlPU6Eu73dHlaxql5m6aOG4=
 github.com/hollis-labs/substrate v0.1.1-0.20261123012010-9ce0ebfd5a65 h1:yVmp/cWpk3O5+xQxSRv7vMRJ9tenR306ePIJJyp1Slc=
 github.com/hollis-labs/substrate v0.1.1-0.20261123012010-9ce0ebfd5a65/go.mod h1:ZRN31jPnAFuCaw9yAyRpXvYW800Zr4nTMX5HwQT2z0M=
-github.com/hollis-labs/surface v0.22.0 h1:VI3HmhRd2ALHjul6tm77WKa0QmTHkzyLfynKIz+OAFc=
-github.com/hollis-labs/surface v0.22.0/go.mod h1:+Gd5UU5JOaR2bWLJw1Y9cT9kE1rBrUHPUuJ4nkqqvoI=
+github.com/hollis-labs/surface v0.22.1 h1:PtW1XNWI7GDOdE8xjPBljDyel0NebMXkRlJ1Xx3cfeQ=
+github.com/hollis-labs/surface v0.22.1/go.mod h1:+Gd5UU5JOaR2bWLJw1Y9cT9kE1rBrUHPUuJ4nkqqvoI=
 github.com/inconshreveable/mousetrap v1.1.0 h1:wN+x4NVGpMsO7ErUn/mUI3vEoE6Jt13X2s0bqwp9tc8=
 github.com/inconshreveable/mousetrap v1.1.0/go.mod h1:vpF70FUmC8bwa3OWnCshd2FqLfsEA9PFc4w1p2J65bw=
 github.com/invopop/jsonschema v0.14.0 h1:MHQqLhvpNUZfw+hM3AZDYK7jxO8FZoQeQM77g8iyZjg=
