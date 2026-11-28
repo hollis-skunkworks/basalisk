@@ -13,7 +13,7 @@ jobs:
       app: basalisk
       main_pkg: ./cmd/basalisk
       node_version: "22"
-      ui_cmd: "npm ci && SURFACE_APP=basalisk SURFACE_OUT=cmd/basalisk/webui/dist npx vite build --config web/vite.config.ts"
+      ui_cmd: "npm ci && SURFACE_APP=basalisk SURFACE_OUT=$PWD/cmd/basalisk/webui/dist npx vite build --config web/vite.config.ts"
       test_cmd: "go vet ./..."   # the full checks run in ci.yml
       targets: '["linux/amd64"]'
       extra_files: deploy.yaml
